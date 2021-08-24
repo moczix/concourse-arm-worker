@@ -1,0 +1,6 @@
+{ 
+  "type": "git", 
+  "version": "1.14.0",
+  "privileged": false,
+  "unique_version_history": false
+ }

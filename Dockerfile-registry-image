@@ -1,7 +1,11 @@
-FROM golang:1.14.3-alpine3.11 as builder
+FROM golang:1.17.0-alpine3.14 as builder
 RUN apk add git
-RUN git clone --depth 1 --branch v0.14.0 https://github.com/concourse/registry-image-resource.git /src/registry-image-resource
+ENV REGISTRY_IMAGE_COMMIT=cb672df0cc6b1998723ae48123b17788220fcdcb
+
+
+RUN git clone https://github.com/moczix/registry-image-resource.git /src/registry-image-resource
 WORKDIR /src/registry-image-resource
+RUN git checkout $REGISTRY_IMAGE_COMMIT
 ENV CGO_ENABLED 0
 RUN go get -d ./...
 RUN go build -o /assets/in ./cmd/in

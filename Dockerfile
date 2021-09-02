@@ -7,6 +7,8 @@ RUN apk add gcc git g++ musl
 
 RUN git clone --branch $CONCOURSE_VERSION https://github.com/concourse/concourse /go/concourse
 WORKDIR /go/concourse
+RUN rm versions.go
+COPY ./versions.go .
 RUN go build -ldflags "-extldflags '-static'" ./cmd/concourse
 
 RUN gcc -O2 -static -o /go/concourse/init ./cmd/init/init.c
@@ -64,40 +66,39 @@ RUN apt-get update && apt-get install -y \
     libbtrfs-dev \
     pkg-config \
     seccomp \
-    libseccomp-dev
-
-WORKDIR /downloads
-
-RUN wget -c https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/protoc-3.17.3-linux-aarch_64.zip
-RUN unzip protoc-3.17.3-linux-aarch_64.zip -d /usr/local
-
-WORKDIR /containerd
-
-RUN git clone https://github.com/containerd/containerd.git .
-RUN make
-
-WORKDIR /runc
-RUN git clone https://github.com/opencontainers/runc .
-RUN make
-RUN make install
-
-WORKDIR /containerd/bin
-
-RUN runc
-
-ENV CONCOURSE_CONTAINERD_BIN /containerd/bin/containerd
-ENV CONCOURSE_CNI_PLUGINS_DIR /containerd/bin/
+    libseccomp-dev \
+    containerd \
+    runc
     
-    
-WORKDIR /usr/local/concourse/bin
+
+
+#WORKDIR /downloads
+
+#RUN wget -c https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/protoc-3.17.3-linux-aarch_64.zip
+#RUN unzip protoc-3.17.3-linux-aarch_64.zip -d /usr/local
+
+#WORKDIR /containerd
+
+#RUN git clone https://github.com/containerd/containerd.git .
+#RUN make
+
+#WORKDIR /runc
+#RUN git clone https://github.com/opencontainers/runc .
+#RUN make
+#RUN make install
+
+#WORKDIR /containerd/bin
+
+#RUN runc
+
+#NV CONCOURSE_CONTAINERD_BIN /containerd/bin/containerd
+#ENV CONCOURSE_CNI_PLUGINS_DIR /containerd/bin/
+
+WORKDIR /concourse/js
+COPY ./web/public .
 RUN ls -ls
-RUN file *
 
-WORKDIR /go/guardian
-RUN file *
-
-RUN chmod -R 777 /tmp
-RUN chmod -R 777 /worker-state
+ENV CONCOURSE_WEB_PUBLIC_DIR=/concourse/js
 
 STOPSIGNAL SIGUSR2
 

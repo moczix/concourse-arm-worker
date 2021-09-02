@@ -1,7 +1,3 @@
-# forked from https://github.com/neumayer/concourse-arm-worker
-updated to 7.4.0 of concourse BUT WORK ONLY WITH CONTAINERD
-
-
 # concourse-arm-worker
 
 ```

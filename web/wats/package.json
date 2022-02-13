@@ -1,0 +1,28 @@
+{
+  "name": "wats",
+  "version": "1.0.0",
+  "description": "Concourse web UI acceptance tests",
+  "dependencies": {
+    "child-process-promise": "^2.2.1",
+    "color": "^4.2.0",
+    "puppeteer": "^13.3.0",
+    "tmp-promise": "^3.0.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "ava": "^4.0.1"
+  },
+  "scripts": {
+    "test": "ava --serial"
+  },
+  "repository": "git+https://github.com/concourse/concourse.git",
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/concourse/concourse/issues"
+  },
+  "homepage": "https://github.com/concourse/concourse#readme",
+  "ava": {
+    "timeout": "5m"
+  }
+}

@@ -1,0 +1,108 @@
+@import (reference) "_vars.less";
+
+html,
+body,
+#elm-app-embed,
+#subpage,
+.content-frame {
+  height: 100%;
+}
+
+@scale: 0.5;
+@top-bar-height: 108px * @scale;
+@fixed-header-height: 64px;
+@builds-list-height: 30px;
+@pagination-header-height: 64px;
+
+@user-menu-z-index: 100;
+
+.content-frame {
+  display: flex;
+  flex-direction: column;
+
+  .bottom {
+    flex-grow: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    padding-top: @top-bar-height;
+  }
+}
+
+.with-fixed-header {
+  .fixed-header {
+    z-index: 0;
+    background: @grey90;
+  }
+
+  .scrollable-body {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+  }
+}
+
+.pagination-header {
+  background: @grey90;
+  line-height: @pagination-header-height;
+}
+
+#content { // TODO: kill id
+  flex-grow: 1;
+
+  // for absolutely positioned content in pipeline graph
+  position: relative;
+}
+
+.display-in-middle {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translate(0, -70%);
+  text-align: center;
+}
+
+.nav-item {
+  &,
+  a {
+    color: @grey20;
+  }
+
+  font-size: 18px;
+  line-height: @top-bar-height;
+}
+
+.build-actions {
+  width: 150px;
+}
+
+#builds {
+  overflow-x: hidden;
+}
+
+.step-body {
+  position: relative;
+}
+
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.vri {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 33%;
+  padding-left: 4px;
+  padding-right: 5px;
+}
+
+.metadata-container {
+  max-width: 34%;
+}
+
+.metadata-field {
+  margin-top: 0;
+  margin-bottom: 0.3em;
+}

@@ -1,0 +1,46 @@
+jobs:
+- name: on_abort
+  on_abort:
+    task: say-bye-from-job
+    config:
+      platform: linux
+
+      image_resource:
+        type: mock
+        source: {mirror_self: true}
+
+      run:
+        path: echo
+        args: [bye from job]
+  plan:
+  - task: run
+    on_abort:
+      task: say-bye-from-step
+      config:
+        platform: linux
+
+        image_resource:
+          type: mock
+          source: {mirror_self: true}
+
+        run:
+          path: echo
+          args: [bye from step]
+    config:
+      platform: linux
+
+      image_resource:
+        type: mock
+        source: {mirror_self: true}
+
+      run:
+        path: sh
+        args:
+        - -ec
+        - |
+          echo hello
+
+          while sleep 1; do
+            echo looping
+          done
+

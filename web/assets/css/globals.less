@@ -1,0 +1,32 @@
+@import (reference) "_vars.less";
+@import (reference) "typography.less";
+
+body {
+  margin: 0;
+  background: @grey80;
+  color: @grey20;
+  scrollbar-color: #555 rgba(0,0,0,0);
+}
+
+a,
+a:link,
+body a {
+  color: @grey20;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #707070;
+}

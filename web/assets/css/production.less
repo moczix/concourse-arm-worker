@@ -1,0 +1,300 @@
+.job-header,
+.pagination-header {
+  padding: 0;
+  height: 60px;
+
+  h1 {
+    line-height: 60px;
+    float: left;
+    margin: 0;
+    margin-left: 16px;
+  }
+}
+
+.build-header,
+.pagination-header {
+  padding: 0;
+
+  h1 {
+    line-height: 60px;
+    float: left;
+    margin: 0;
+    margin-left: 16px;
+  }
+}
+
+.build-header .build-name,
+.pagination-header h1 {
+  font-weight: bold;
+}
+
+.build-duration {
+  line-height: 16px;
+}
+
+.build-header .build-duration {
+  float: left;
+  height: 60px;
+}
+
+.pagination-header .last-checked {
+  float: left;
+  margin-left: 24px;
+}
+
+.cli-downloads {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.cli-downloads li {
+  display: inline-block;
+  padding-left: 7px;
+}
+
+.cli-downloads a {
+  text-decoration: none;
+}
+
+.lower-right-info {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}
+
+.lower-right-info td {
+  text-align: right;
+  padding: 0;
+}
+
+.lower-right-info > .cli-downloads {
+  text-align: right;
+}
+
+#concourse-version {
+  font-weight: bold;
+}
+
+#builds,
+.builds-list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.builds-list li {
+  float: left;
+  margin: 5px;
+}
+
+.jobs-builds-list {
+  background: none;
+}
+
+.jobs-builds-list li {
+  background-color: @grey80;
+  width: 100%;
+  float: none;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+#builds li {
+  display: inline-block;
+}
+
+#builds li a,
+.builds-list li a {
+  font-size: 23px;
+  line-height: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 4px 6px 4px 4px;
+  min-width: 24px;
+  height: 24px;
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#build-requires-auth {
+  display: none; /* gets toggled by failed websocket connection */
+}
+
+.build-login input {
+  width: 100%;
+  padding: 0 10px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 40px;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0;
+  border: none;
+}
+
+span.error {
+  font-weight: bold;
+}
+
+ul.prep-status-list {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+li.prep-status {
+  line-height: 1.5em;
+  list-style-type: none;
+
+  .marker {
+    margin-right: 5px;
+  }
+
+  .details {
+    margin-left: 40px;
+  }
+}
+
+.step-body {
+  padding: 8px 0 8px 8px;
+}
+
+.build-step pre {
+  margin: 0;
+}
+
+.steps {
+  font-size: 14px;
+}
+
+.steps .seq {
+  clear: both;
+}
+
+.seq {
+  margin-bottom: 8px;
+}
+
+.steps .seq:last-child {
+  margin-bottom: 0;
+}
+
+.build-step.inactive h3,
+.build-step.inactive i,
+.build-step.inactive .dictionary,
+.prep-status.inactive {
+  color: @grey70;
+}
+
+.build-step .header {
+  cursor: pointer;
+  clear: both;
+  line-height: 15px;
+  font-size: 15px;
+  padding: 8px;
+  border: 1px solid transparent;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.build-step .header i {
+  width: 28px;
+}
+
+.build-step .header i.left {
+  float: left;
+  margin-right: -6px;
+}
+
+.build-step .header i.right {
+  float: right;
+  margin-left: -6px;
+}
+
+.build-step .header .dict-key,
+.build-step .header .dict-value {
+  font-size: 14px;
+  padding-right: 16px;
+}
+
+.build-step .dictionary {
+  float: right;
+}
+
+.build-step .header .dictionary tr:not(:last-child) td {
+  padding-bottom: 8px;
+}
+
+.build-step .header h3 {
+  margin: 0;
+  padding: 0 16px;
+  float: left;
+}
+
+.step-body .dictionary {
+  max-width: 50%;
+}
+
+.step-body .header .dictionary {
+  max-width: 100%;
+}
+
+.step-body table tr:not(:last-child) td {
+  border-bottom: 8px solid @grey70;
+}
+
+.dict-key {
+  text-align: right;
+  vertical-align: top;
+  padding: 0 8px 0 0;
+  margin: 0;
+}
+
+.dict-value {
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
+  word-break: break-all;
+}
+
+.legend {
+  position: absolute;
+  pointer-events: none;
+  bottom: 1em;
+  left: 1em;
+  margin: 0;
+  padding: 0;
+
+  dt {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    float: left;
+  }
+
+  dd {
+    margin-left: 22px;
+    line-height: 20px;
+  }
+}
+
+.pipeline-view {
+  .pipeline-content {
+    position: relative;
+    flex-grow: 1;
+  }
+}
+
+.causality-view {
+  .causality-content {
+    position: relative;
+    flex-grow: 1;
+  }
+}

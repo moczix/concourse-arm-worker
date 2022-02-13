@@ -1,5 +1,5 @@
 FROM alpine:latest as builder
-ENV GIT_RESOURCE_COMMIT=75b966eac84d1eaa40d6e5170862fb30732daee2
+ENV GIT_RESOURCE_COMMIT=86acbd3187d3e9650bd06f34cd8af0fe41fec19a
 
 RUN apk update && apk upgrade
 RUN apk --no-cache add \

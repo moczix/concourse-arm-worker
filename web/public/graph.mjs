@@ -514,7 +514,7 @@ RankGroup.prototype.layout = function() {
 
     node._keyOffset = rollingKeyOffset;
 
-    this.ordering.fill(rollingKeyOffset, node._edgeKeys.length);
+    this.ordering.fill(rollingKeyOffset, Math.max(node._edgeKeys.length, 1));
 
     rollingKeyOffset += Math.max(node._edgeKeys.length, 1);
   }
@@ -602,6 +602,26 @@ GraphNode.prototype.copy = function() {
   });
 };
 
+const getTextWidth = (function () {
+  const canvas = document.createElement('canvas'),
+        context = canvas.getContext('2d');
+
+  // An arbitrary factor by which to scale the measured text width to make it
+  // consistent with the *actual* size of the text node's bounding box.
+  // Derived by measuring textNode.getBBox().width / getTextWidth() and taking
+  // an approximate average.
+  //
+  // Note that different browsers seem to have different optimal factors. The
+  // 1.1 was based on Firefox, but I also observed ~1.08 on Chrome, ~1.08 on Safari.
+  // Better to slightly overestimate to avoid overcrowding.
+  const WIDTH_FUDGE_FACTOR = 1.1;
+
+  return function(text, font) {
+    context.font = font;
+    return context.measureText(text).width * WIDTH_FUDGE_FACTOR;
+  };
+})();
+
 GraphNode.prototype.width = function() {
   if (this._cachedWidth == 0) {
     var id = this.id;
@@ -617,13 +637,15 @@ GraphNode.prototype.width = function() {
     var width = 0;
 
     if (textNode) {
-      width += textNode.getBBox().width;
+      width += getTextWidth(textNode.innerHTML, '700 12px Inconsolata,monospace');
     }
     if (imageNode) {
-      width += imageNode.getBBox().width;
+      const PIN_ICON_WIDTH = 8;
+      width += PIN_ICON_WIDTH;
     }
     if (iconNode) {
-      width += Math.max(iconNode.getBBox().width, iconNode.width.baseVal.value);
+      const MATERIAL_DESIGN_ICON_WIDTH = 12;
+      width += MATERIAL_DESIGN_ICON_WIDTH;
     }
 
     if (textNode && imageNode && iconNode) {

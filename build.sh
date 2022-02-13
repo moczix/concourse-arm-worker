@@ -25,4 +25,4 @@ docker rm -v git-resource
   
   
   
-docker build -t concourse-arm-worker:local-1.2 .
+docker build -t concourse-arm-worker:local-1.4 .

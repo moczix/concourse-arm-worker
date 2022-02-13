@@ -1,7 +1,7 @@
-FROM golang:1.17.0-alpine3.14 as builder
-ENV CONCOURSE_VERSION=v7.4.0
-ENV GUARDIAN_COMMIT=bd2b57831d182307500c2f560e18e6ac74e13d04
-ENV CNI_PLUGINS_VERSION=v1.0.0
+FROM golang:1.17.7-alpine3.15 as builder
+ENV CONCOURSE_VERSION=v7.6.0
+ENV GUARDIAN_COMMIT=d96eedb991176293ccaa2dbff331f33601fc1c10
+ENV CNI_PLUGINS_VERSION=v1.0.1
 RUN apk add gcc git g++ musl
 
 
@@ -30,8 +30,8 @@ COPY resource-types /usr/local/concourse/resource-types
 RUN apt-get update
 RUN apt install -y gcc git g++ musl wget
 
-RUN wget https://golang.org/dl/go1.17.linux-arm64.tar.gz
-RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.linux-arm64.tar.gz
+RUN wget https://golang.org/dl/go1.17.7.linux-arm64.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.17.7.linux-arm64.tar.gz
 
 ENV PATH=$PATH:/usr/local/go/bin
 

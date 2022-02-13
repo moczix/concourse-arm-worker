@@ -1,6 +1,6 @@
-FROM golang:1.17.0-alpine3.14 as builder
+FROM golang:1.17.7-alpine3.15 as builder
 RUN apk add git
-ENV REGISTRY_IMAGE_COMMIT=2113c3cf8fda284ba0670230a4ea996b98a5a9b4
+ENV REGISTRY_IMAGE_COMMIT=b4a72559ebcc1c4ea703abb410aa1fc19180957f
 
 
 RUN git clone https://github.com/moczix/registry-image-resource.git /src/registry-image-resource

@@ -2,7 +2,7 @@ package concourse
 
 // Version is the version of Concourse. This variable is overridden at build
 // time in the pipeline using ldflags.
-var Version = "7.4.0"
+var Version = "7.6.0"
 
 // WorkerVersion identifies compatibility between Concourse and a worker.
 //

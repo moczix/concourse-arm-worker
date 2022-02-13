@@ -69,30 +69,6 @@ RUN apt-get update && apt-get install -y \
     libseccomp-dev \
     containerd \
     runc
-    
-
-
-#WORKDIR /downloads
-
-#RUN wget -c https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/protoc-3.17.3-linux-aarch_64.zip
-#RUN unzip protoc-3.17.3-linux-aarch_64.zip -d /usr/local
-
-#WORKDIR /containerd
-
-#RUN git clone https://github.com/containerd/containerd.git .
-#RUN make
-
-#WORKDIR /runc
-#RUN git clone https://github.com/opencontainers/runc .
-#RUN make
-#RUN make install
-
-#WORKDIR /containerd/bin
-
-#RUN runc
-
-#NV CONCOURSE_CONTAINERD_BIN /containerd/bin/containerd
-#ENV CONCOURSE_CNI_PLUGINS_DIR /containerd/bin/
 
 WORKDIR /concourse/js
 COPY ./web/public .

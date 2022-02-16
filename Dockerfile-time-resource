@@ -1,10 +1,14 @@
 FROM golang:1.17.7-alpine3.15 as builder
+RUN apk add git
+ENV TIME_RESOURCE_COMMIT=fe48102cf21de72ded9c846c8f813c117894d123
 
-WORKDIR /concourse/time-resource
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
-COPY . /concourse/time-resource
+
+RUN git clone https://github.com/concourse/time-resource.git /src/time-resource
+WORKDIR /src/time-resource
+RUN git checkout $TIME_RESOURCE_COMMIT
+
+
+WORKDIR /src/time-resource
 ENV CGO_ENABLED 0
 RUN go build -o /assets/out github.com/concourse/time-resource/out
 RUN go build -o /assets/in github.com/concourse/time-resource/in

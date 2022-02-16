@@ -1,6 +1,6 @@
 { 
-  "type": "git", 
-  "version": "1.14.5",
+  "type": "time", 
+  "version": "1.4.1",
   "privileged": false,
   "unique_version_history": false
  }

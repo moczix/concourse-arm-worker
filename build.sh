@@ -12,7 +12,8 @@ docker export registry-image | gzip \
   > resource-types/registry-image/rootfs.tgz
 docker rm -v registry-image
 
-docker build -t time-resource -f Dockerfile-time-resource .
+docker build --build-arg http_proxy --build-arg https_proxy \
+  -t time-resource -f Dockerfile-time-resource .
 docker create --name time-resource time-resource
 mkdir -p resource-types/time-resource
 docker export time-resource | gzip \

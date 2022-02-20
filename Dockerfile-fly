@@ -4,7 +4,7 @@ RUN apk add gcc git g++ musl
 
 RUN git clone --branch $CONCOURSE_VERSION https://github.com/concourse/concourse /go/concourse
 WORKDIR /go/concourse
-
+ENV CGO_ENABLED=0
 RUN go build -ldflags '-extldflags "-static"' -o ./fly-builded ./fly
 RUN ls -ls
 

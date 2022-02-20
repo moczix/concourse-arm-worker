@@ -1,0 +1,15 @@
+FROM golang:1.17.0-alpine3.14 as builder
+ENV CONCOURSE_VERSION=v7.4.0
+RUN apk add gcc git g++ musl
+
+RUN git clone --branch $CONCOURSE_VERSION https://github.com/concourse/concourse /go/concourse
+WORKDIR /go/concourse
+
+RUN go build -ldflags '-extldflags "-static"' -o ./fly-builded ./fly
+RUN ls -ls
+
+FROM alpine:latest
+
+WORKDIR /app
+
+COPY --from=builder /go/concourse/fly-builded /app/fly
